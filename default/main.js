@@ -10,58 +10,58 @@ var _ = require('lodash');
 
 
 
-module.exports.loop = function () {
+module.exports.loop = function() {
 
-  // if (Game.cpu.bucket > 200) {
-  //  //Refresh lookups to memory
-  //  memoryRefresh.refresh();
-  // }
-  
-  for(var i in Memory.creeps) {
-    if(!Game.creeps[i]) {
-        delete Memory.creeps[i];
+    // if (Game.cpu.bucket > 200) {
+    //  //Refresh lookups to memory
+    //  memoryRefresh.refresh();
+    // }
+
+    for (var i in Memory.creeps) {
+        if (!Game.creeps[i]) {
+            delete Memory.creeps[i];
+        }
     }
- }
 
-  for (var name in Game.rooms) {
-    var room = Game.rooms[name];
+    for (var name in Game.rooms) {
+        var room = Game.rooms[name];
 
-    //Defend each room with towers
-    actionDefendRoom.run(room);
+        //If no harvesters exist, default other roles to be harvesters
+        var panic = _.filter(Game.creeps, {
+            room: {
+                name: name
+            },
+            memory: {
+                role: 'harvester'
+            }
+        }).length === 0;
 
-    //Control spawning of creeps for each room
-    creepSpawn.run(room);
+        //Defend each room with towers
+        actionDefendRoom.run(room);
 
-    //If no harvesters exist, default other roles to be harvesters
-    var panic = _.filter(Game.creeps, {
-      room: {
-        name: name
-      },
-      memory: {
-        role: 'harvester'
-      }
-    }).length === 0;
+        //Control spawning of creeps for each room
+        creepSpawn.run(room, panic);
 
-    //Get all the creeps for the current room
-    var roomCreeps = _.filter(Game.creeps, {
-      room: {
-        name: name
-      }
-    });
+        //Get all the creeps for the current room
+        var roomCreeps = _.filter(Game.creeps, {
+            room: {
+                name: name
+            }
+        });
 
-    //Control creeps per room
-    roomCreeps.forEach(creep => {
-      creepResetRole.reset(creep, false);
-      creepAssignTask.assign(creep, panic);
+        //Control creeps per room
+        roomCreeps.forEach(creep => {
+            creepResetRole.reset(creep, false);
+            creepAssignTask.assign(creep, panic);
 
-    //   if (Game.time % 1 === 0) {
-    //      creepResetRole.reset(creep, true);
-    //      console.log('Force reset ' + creep.name + ' role');
-    //   }
-    });
+            //   if (Game.time % 1 === 0) {
+            //      creepResetRole.reset(creep, true);
+            //      console.log('Force reset ' + creep.name + ' role');
+            //   }
+        });
 
-  }
+    }
 
 
-  Memory.time = Game.time;
+    Memory.time = Game.time;
 }

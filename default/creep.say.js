@@ -1,15 +1,15 @@
 module.exports = {
-  say: function (creep, message) {
-    if (creep.memory.say !== message) {
-      creep.memory.say = message;
-    }
-    creep.say(creep.memory.say);
-  },
+    say: function(creep, message) {
+        if (creep.memory.say !== message) {
+            creep.memory.say = message;
+        }
+        creep.say(creep.memory.say);
+    },
 
-  sayGlobal: function (creep, message) {
-    if (creep.memory.say !== message) {
-      creep.memory.say = message;
+    sayGlobal: function(creep, message) {
+        if (creep.memory.say !== message) {
+            creep.memory.say = message;
+        }
+        creep.say(creep.memory.say, true);
     }
-    creep.say(creep.memory.say, true);
-  }
 };

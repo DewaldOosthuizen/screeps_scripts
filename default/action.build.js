@@ -4,33 +4,33 @@ var errorHandler = require('error.notify');
 
 var buildStructure = {
 
-  run: function(creep, target) {
+    run: function(creep, target) {
 
-    try {
-      var message = (creep.name + ' is building: ' + target);
+        try {
+            var message = (creep.name + ' is building: ' + target);
 
-      //Gets the object in memory or initialize object
-      var toBuild = setTarget.set(creep, target, false, message);
+            //Gets the object in memory or initialize object
+            var toBuild = setTarget.set(creep, target, false, message);
 
-      //Reset if conditions are true
-      var toBuild = setTarget.set(
-        creep,
-        target,
-        (!toBuild || toBuild === null || !Game.constructionSites[toBuild.id] || Game.constructionSites[toBuild.id] === null),
-        message,
-        'ð¨Build'
-      );
+            //Reset if conditions are true
+            var toBuild = setTarget.set(
+                creep,
+                target,
+                (!toBuild || toBuild === null || !Game.constructionSites[toBuild.id] || Game.constructionSites[toBuild.id] === null),
+                message,
+                '🔨Build'
+            );
 
-      if (creep.build(toBuild) == ERR_NOT_IN_RANGE) {
-        actionMove.run(creep, toBuild, '#33cc33');
-      } else {
-        creep.build(toBuild);
-      }
-    } catch (e) {
-      errorHandler.notify('Error in action.build: ', e);
+            if (creep.build(toBuild) == ERR_NOT_IN_RANGE) {
+                actionMove.run(creep, toBuild, '#33cc33');
+            } else {
+                creep.build(toBuild);
+            }
+        } catch (e) {
+            errorHandler.notify('Error in action.build: ', e);
+        }
+
     }
-
-  }
 
 };
 
