@@ -16,15 +16,15 @@ var creepSpawn = {
           var countCreeps = lookup.countAllCreepsByRole(myRoom);
 
           if (countCreeps.harvesters < 1) {
-            spawnRole.spawnCollector(spawn);
+            spawnRole.spawnCollector(spawn, false);
           } else if (countCreeps.upgraders < 2) {
-            spawnRole.spawnEnhancer(spawn);
+            spawnRole.spawnEnhancer(spawn, false);
           } else if (countCreeps.transporters < 2) {
-            spawnRole.spawnAllocator(spawn);
+            spawnRole.spawnAllocator(spawn, false);
           } else if (countCreeps.repairer < 1) {
-            spawnRole.spawnEngineer(spawn);
+            spawnRole.spawnEngineer(spawn, false);
           } else if (countCreeps.builders < 2) {
-            spawnRole.spawnConstructor(spawn);
+            spawnRole.spawnConstructor(spawn, false);
           } else if (countCreeps.warriors < 0) {
                spawnRole.spawnWarrior(spawn);
           } else if (countCreeps.archers < 0) {

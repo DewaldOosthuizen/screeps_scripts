@@ -18,7 +18,7 @@ var roleHealer = {
           actionMove.run(creep, Game.getObjectById(target[0]), '#0066ff')
         } else {
           creep.heal(Game.getObjectById(target[0]))
-          creepSay.sayGlobal(creep, '⚡Healing');
+          creepSay.sayGlobal(creep, 'â¡Healing');
         }
       } 
     //   else if (creep.room.controller.sign.username !== creep.owner.username) {

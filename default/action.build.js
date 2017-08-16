@@ -18,7 +18,7 @@ var buildStructure = {
         target,
         (!toBuild || toBuild === null || !Game.constructionSites[toBuild.id] || Game.constructionSites[toBuild.id] === null),
         message,
-        '🔨Build'
+        'ð¨Build'
       );
 
       if (creep.build(toBuild) == ERR_NOT_IN_RANGE) {

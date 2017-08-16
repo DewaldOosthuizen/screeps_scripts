@@ -19,7 +19,7 @@ var roleAttack = {
         } else {
           creep.attack(enemy);
         }
-        creepSay.sayGlobal(creep, '😡Attack!');
+        creepSay.sayGlobal(creep, 'ð¡Attack!');
       }
       //   else if (creep.room.controller && !creep.room.controller.my) {
       //     var username = creep.room.controller && creep.room.controller.owner ? creep.room.controller.owner.username : undefined
@@ -32,7 +32,7 @@ var roleAttack = {
       //         if (creep.attackController(creep.room.controller) == ERR_NOT_IN_RANGE) {
       //           actionMove.run(creep, creep.room.controller, '#0066ff');
       //         } else {
-      //           creepSay.sayGlobal(creep, '😡Attack!');
+      //           creepSay.sayGlobal(creep, 'ð¡Attack!');
       //           creep.attackController(creep.room.controller)
       //         }
       //       }

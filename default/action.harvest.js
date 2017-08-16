@@ -29,7 +29,7 @@ var harvestResources = {
         target,
         (!toharvest || toharvest === null || !isSource),
         (creep.name + ' is harvesting from: ' + target),
-        '♻️Harvest'
+        'â»ï¸Harvest'
       )
 
       if (creep.harvest(toharvest) == ERR_NOT_IN_RANGE) {

@@ -13,7 +13,7 @@ var roleRepair = {
     try {
       if (creep.memory.repair && creep.carry.energy === 0) {
         creep.memory.repair = false;
-        // creep.say('♻️Harvest')
+        // creep.say('â»ï¸Harvest')
       }
       if (!creep.memory.repair && creep.carry.energy === creep.carryCapacity) {
         creep.memory.repair = true;

@@ -20,7 +20,7 @@ var actionPatrol = {
         positionObject,
         (!creep.memory.target || creep.memory.target === null || targetPosition === creep.pos),
         message,
-        '🤖Patrol'
+        'ð¤Patrol'
       );
 
       actionMove.run(creep, Game.rooms[target.roomName].getPositionAt(target.x, target.y), '#ff0000');
