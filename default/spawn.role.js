@@ -7,10 +7,9 @@ module.exports = {
         //Used for harvesting resources
 
         var body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]; //COST: 800
-        let energy = Game.rooms[spawn.room.name].energyAvailable;
-        let extensions = actionLookup.findRoomExtensions(spawn.room);
 
         if (useEnergyCostMatrix) {
+            let energy = Game.rooms[spawn.room.name].energyAvailable;
             if (energy < actionLookup.calculateCreepBodyCost(body)) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -32,6 +31,7 @@ module.exports = {
                 body = [WORK, CARRY, CARRY, MOVE, MOVE];
             }
         } else {
+            let extensions = actionLookup.findRoomExtensions(spawn.room);
             if (extensions.length >= 10) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -61,10 +61,9 @@ module.exports = {
         //Used for upgrading
 
         var body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]; //COST: 800
-        let energy = Game.rooms[spawn.room.name].energyAvailable;
-        let extensions = actionLookup.findRoomExtensions(spawn.room);
 
         if (useEnergyCostMatrix) {
+            let energy = Game.rooms[spawn.room.name].energyAvailable;
             if (energy < actionLookup.calculateCreepBodyCost(body)) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -86,6 +85,7 @@ module.exports = {
                 body = [WORK, CARRY, CARRY, MOVE, MOVE];
             }
         } else {
+            let extensions = actionLookup.findRoomExtensions(spawn.room);
             if (extensions.length >= 10) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -113,11 +113,9 @@ module.exports = {
         //Used for building construction sites
 
         var body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]; //COST: 800
-        let energy = Game.rooms[spawn.room.name].energyAvailable;
-
-        let extensions = actionLookup.findRoomExtensions(spawn.room);
 
         if (useEnergyCostMatrix) {
+            let energy = Game.rooms[spawn.room.name].energyAvailable;
             if (energy < actionLookup.calculateCreepBodyCost(body)) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -139,6 +137,7 @@ module.exports = {
                 body = [WORK, CARRY, CARRY, MOVE, MOVE];
             }
         } else {
+            let extensions = actionLookup.findRoomExtensions(spawn.room);
             if (extensions.length >= 10) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -166,10 +165,9 @@ module.exports = {
         //Used for repairing
 
         var body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]; //COST: 800
-        let energy = Game.rooms[spawn.room.name].energyAvailable;
-        let extensions = actionLookup.findRoomExtensions(spawn.room);
 
         if (useEnergyCostMatrix) {
+            let energy = Game.rooms[spawn.room.name].energyAvailable;
             if (energy < actionLookup.calculateCreepBodyCost(body)) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -191,6 +189,7 @@ module.exports = {
                 body = [WORK, CARRY, CARRY, MOVE, MOVE];
             }
         } else {
+            let extensions = actionLookup.findRoomExtensions(spawn.room);
             if (extensions.length >= 10) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -218,10 +217,9 @@ module.exports = {
         //used for transporting energy to structures
 
         var body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]; //COST: 800
-        let energy = Game.rooms[spawn.room.name].energyAvailable;
-        let extensions = actionLookup.findRoomExtensions(spawn.room);
 
         if (useEnergyCostMatrix) {
+            let energy = Game.rooms[spawn.room.name].energyAvailable;
             if (energy < actionLookup.calculateCreepBodyCost(body)) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -243,6 +241,7 @@ module.exports = {
                 body = [WORK, CARRY, CARRY, MOVE, MOVE];
             }
         } else {
+            let extensions = actionLookup.findRoomExtensions(spawn.room);
             if (extensions.length >= 10) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
