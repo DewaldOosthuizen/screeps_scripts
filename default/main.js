@@ -40,7 +40,7 @@ module.exports.loop = function() {
         actionDefendRoom.run(room);
 
         //Control spawning of creeps for each room
-        creepSpawn.run(room, panic);
+        creepSpawn.run(room, true);
 
         //Get all the creeps for the current room
         var roomCreeps = _.filter(Game.creeps, {

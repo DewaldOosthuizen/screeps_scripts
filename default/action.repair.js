@@ -19,7 +19,7 @@ var repairStructure = {
                 target,
                 (!toRepair || toRepair === null || toRepair.hits === toRepair.hitsMax),
                 message,
-                'ð§Repair'
+                '🔧Repair'
             );
 
 
