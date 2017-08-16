@@ -27,20 +27,33 @@ module.exports.loop = function() {
         var room = Game.rooms[name];
 
         //If no harvesters exist, default other roles to be harvesters
-        var panic = _.filter(Game.creeps, {
+        //TODO: Move to action.lookup.js
+        var totalHarvesters = _.filter(Game.creeps, {
             room: {
                 name: name
             },
             memory: {
                 role: 'harvester'
             }
-        }).length === 0;
+        }).length;
+
+        var totalTransporters = _.filter(Game.creeps, {
+            room: {
+                name: name
+            },
+            memory: {
+                role: 'transporter'
+            }
+        }).length;
+
+        var panic = (totalHarvesters + totalTransporters) === 0;
+
 
         //Defend each room with towers
         actionDefendRoom.run(room);
 
         //Control spawning of creeps for each room
-        creepSpawn.run(room, true);
+        creepSpawn.run(room, panic);
 
         //Get all the creeps for the current room
         var roomCreeps = _.filter(Game.creeps, {

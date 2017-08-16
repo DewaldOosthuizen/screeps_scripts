@@ -13,17 +13,22 @@ var dumpResources = {
             //Gets the object in memory or initialize object
             var dump = setTarget.set(creep, target, false, message);
 
-            var isDumpSiteFull = (dump && dump !== null && dump.energy && dump.energyCapacity ? (dump.energy === dump.energyCapacity) : true);
+            var resetDumpSite = (
+                dump && dump !== null && dump.energy && dump.energyCapacity ?
+                (dump.energy === dump.energyCapacity) || creep.transfer(dump, RESOURCE_ENERGY) == ERR_INVALID_TARGET :
+                true
+            );
             //   var resetHarvesterDumpSite = (dump && dump !== null ? (creep.memory.role === 'harvester' && dump.structureType !== STRUCTURE_SPAWN) : true);
 
             //Reset target if needed
             dump = setTarget.set(
                 creep,
                 target,
-                (isDumpSiteFull || creep.transfer(dump, RESOURCE_ENERGY) == ERR_INVALID_TARGET),
+                resetDumpSite,
                 message,
-                '\"🚚\"Dumping'
+                '🚚Dumping'
             )
+
             if (creep.transfer(dump, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 actionMove.run(creep, dump, '#ffff00');
             } else {
