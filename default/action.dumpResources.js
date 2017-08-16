@@ -20,11 +20,10 @@ var dumpResources = {
             dump = setTarget.set(
                 creep,
                 target,
-                (isDumpSiteFull),
+                (isDumpSiteFull || creep.transfer(dump, RESOURCE_ENERGY) == ERR_INVALID_TARGET),
                 message,
-                '🚚Dumping'
+                '\"🚚\"Dumping'
             )
-
             if (creep.transfer(dump, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 actionMove.run(creep, dump, '#ffff00');
             } else {
