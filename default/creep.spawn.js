@@ -5,7 +5,7 @@ var lookup = require('action.lookup');
 
 var creepSpawn = {
 
-    run: function(myRoom, panic) {
+    run: function(myRoom, useEnergyCostMatrix) {
         try {
 
             let spawnList = myRoom.find(FIND_MY_SPAWNS);
@@ -16,15 +16,15 @@ var creepSpawn = {
                     var countCreeps = lookup.countAllCreepsByRole(myRoom);
 
                     if (countCreeps.harvesters < 1) {
-                        spawnRole.spawnCollector(spawn, panic);
+                        spawnRole.spawnCollector(spawn, useEnergyCostMatrix);
                     } else if (countCreeps.upgraders < 2) {
-                        spawnRole.spawnEnhancer(spawn, panic);
+                        spawnRole.spawnEnhancer(spawn, useEnergyCostMatrix);
                     } else if (countCreeps.transporters < 2) {
-                        spawnRole.spawnAllocator(spawn, panic);
+                        spawnRole.spawnAllocator(spawn, useEnergyCostMatrix);
                     } else if (countCreeps.repairer < 1) {
-                        spawnRole.spawnEngineer(spawn, panic);
+                        spawnRole.spawnEngineer(spawn, useEnergyCostMatrix);
                     } else if (countCreeps.builders < 2) {
-                        spawnRole.spawnConstructor(spawn, panic);
+                        spawnRole.spawnConstructor(spawn, useEnergyCostMatrix);
                     } else if (countCreeps.warriors < 0) {
                         spawnRole.spawnWarrior(spawn);
                     } else if (countCreeps.archers < 0) {
