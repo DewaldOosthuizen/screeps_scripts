@@ -1,5 +1,5 @@
 var actionMove = require('action.move');
-var actionLookup = require('action.lookup');
+var lookup = require('lookup.find');
 var setTarget = require('creep.setTarget');
 var errorHandler = require('error.notify');
 
@@ -15,7 +15,7 @@ var harvestResources = {
             )
 
             //Get all sources in room
-            var allSources = actionLookup.findSources(creep.room);
+            var allSources = lookup.findSources(creep.room);
             //Check if target is a source
             var isSource = toharvest && toharvest.id !== null ? allSources.some(s => s === toharvest) : false;
 

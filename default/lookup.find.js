@@ -62,24 +62,37 @@ module.exports = {
         return _.sortBy(creeps, c => ((c.hits / c.hitsMax) * 100));
     },
 
-    findTransporterDumpSites: function(room) {
+    findDumpSites: function(room) {
 
+        //Get all hostiles in the room
+        var hostiles = findHostileCreepsFunc(room);
         var target = [];
 
-        if (target.length <= 0) {
-            //Find all structures other than spawn and towers that require energy
-            target = room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType !== STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
-                }
-            });
-
+        //If hostiles have entered the room, all energy should be carried to the tower
+        if (hostiles.length > 0) {
             if (target.length === 0) {
                 target = room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType === STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
                     }
                 });
+            }
+        } else {
+            if (target.length <= 0) {
+                //Find all structures other than spawn and towers that require energy
+                target = room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType !== STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
+                    }
+                });
+
+                if (target.length === 0) {
+                    target = room.find(FIND_STRUCTURES, {
+                        filter: (structure) => {
+                            return (structure.structureType === STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
+                        }
+                    });
+                }
             }
         }
 
@@ -88,25 +101,6 @@ module.exports = {
             target = findAllDumpSitesFunc(room);
         }
 
-
-        //Sorts targets by buildings having the least percentage of energy
-        var targetsSorted = _.sortBy(target, t => ((t.energy / t.energyCapacity) * 100));
-
-        return targetsSorted;
-    },
-
-    findHarvesterDumpSites: function(room) {
-        //Find all structures other than spawn and towers that require energy
-        var target = room.find(FIND_STRUCTURES, {
-            filter: (structure) => {
-                return structure.structureType === STRUCTURE_SPAWN && structure.energy < structure.energyCapacity;
-            }
-        });
-
-        if (target.length === 0) {
-            //Find all structures other than spawn that require energy
-            target = findAllDumpSitesFunc(room);
-        }
 
         //Sorts targets by buildings having the least percentage of energy
         var targetsSorted = _.sortBy(target, t => ((t.energy / t.energyCapacity) * 100));

@@ -1,6 +1,6 @@
 var actionMove = require('action.move');
 var actionPatrol = require('action.patrol');
-var actionLookup = require('action.lookup');
+var lookup = require('lookup.find');
 var actionExplore = require('action.explore');
 var actionClaimController = require('action.claimController');
 var actionSignController = require('action.signController');
@@ -11,7 +11,7 @@ var roleAttack = {
 
     run: function(creep) {
         try {
-            const target = actionLookup.findHostileCreeps(creep.room);
+            const target = lookup.findHostileCreeps(creep.room);
             if (target && target.length > 0) {
                 var enemy = Game.getObjectById(target[0]);
                 if (creep.attack(enemy) == ERR_NOT_IN_RANGE) {
@@ -23,7 +23,7 @@ var roleAttack = {
             }
             //   else if (creep.room.controller && !creep.room.controller.my) {
             //     var username = creep.room.controller && creep.room.controller.owner ? creep.room.controller.owner.username : undefined
-            //     var isFriendly = actionLookup.run("IS_FRIEND", username);
+            //     var isFriendly = lookup.run("IS_FRIEND", username);
 
             //     if (!isFriendly) {
             //       if (ctrl && !ctrl.my && creep.body.some(bodyPart => bodyPart === CLAIM)) {

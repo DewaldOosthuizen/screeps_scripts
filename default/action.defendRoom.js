@@ -1,22 +1,22 @@
-var actionLookup = require('action.lookup');
+var lookup = require('lookup.find');
 var errorHandler = require('error.notify');
 
 var defendRoom = {
 
     run: function(myRoom) {
 
-        var towers = actionLookup.findMyTowers(myRoom);
+        var towers = lookup.findMyTowers(myRoom);
 
         try {
             if (towers.length > 0) {
                 towers.forEach(tower => {
 
-                    var hostiles = actionLookup.findHostileCreeps(myRoom);
+                    var hostiles = lookup.findHostileCreeps(myRoom);
 
                     if (hostiles && hostiles.length > 0) {
                         tower.attack(hostiles[0]);
                     } else {
-                        var closestDamagedStructure = actionLookup.findMyDamagedStructures(myRoom);
+                        var closestDamagedStructure = lookup.findMyDamagedStructures(myRoom);
 
                         if (closestDamagedStructure && closestDamagedStructure.length > 0) {
                             if (tower.energy > (tower.energyCapacity / 2)) {

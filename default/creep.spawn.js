@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var spawnRole = require('spawn.role');
 var errorHandler = require('error.notify');
-var lookup = require('action.lookup');
+var lookup = require('lookup.find');
 
 var creepSpawn = {
 

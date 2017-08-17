@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var lookup = require('action.lookup');
+var lookup = require('lookup.find');
 
 module.exports = {
 

@@ -27,7 +27,7 @@ module.exports.loop = function() {
         var room = Game.rooms[name];
 
         //If no harvesters exist, default other roles to be harvesters
-        //TODO: Move to action.lookup.js
+        //TODO: Move to lookup.find.js
         var totalHarvesters = _.filter(Game.creeps, {
             room: {
                 name: name
@@ -53,7 +53,7 @@ module.exports.loop = function() {
         actionDefendRoom.run(room);
 
         //Control spawning of creeps for each room
-        creepSpawn.run(room, panic);
+        creepSpawn.run(room, true);
 
         //Get all the creeps for the current room
         var roomCreeps = _.filter(Game.creeps, {

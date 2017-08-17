@@ -1,6 +1,6 @@
 var actionMove = require('action.move');
 var actionFollow = require('action.follow');
-var actionLookup = require('action.lookup');
+var lookup = require('lookup.find');
 var actionSignController = require('action.signController');
 var errorHandler = require('error.notify');
 var creepSay = require('creep.say');
@@ -10,7 +10,7 @@ var roleHealer = {
     run: function(creep) {
         try {
             // Find injured creep
-            const target = actionLookup.findMyDamagedCreeps(creep.room);
+            const target = lookup.findMyDamagedCreeps(creep.room);
 
             // If injured creep exits
             if (target && target.length > 0) {

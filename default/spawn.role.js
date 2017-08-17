@@ -1,5 +1,5 @@
 var spawner = require('spawn.createCreep');
-var actionLookup = require('action.lookup');
+var lookup = require('lookup.find');
 
 module.exports = {
 
@@ -11,28 +11,28 @@ module.exports = {
 
         if (useEnergyCostMatrix) {
 
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 700
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 550
                 body = [WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 450
                 body = [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 300
                 body = [WORK, CARRY, CARRY, MOVE, MOVE];
             }
         } else {
-            let extensions = actionLookup.findRoomExtensions(spawn.room);
+            let extensions = lookup.findRoomExtensions(spawn.room);
             if (extensions.length >= 10) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -52,7 +52,7 @@ module.exports = {
         }
 
 
-        if (energy >= actionLookup.calculateCreepBodyCost(body)) {
+        if (energy >= lookup.calculateCreepBodyCost(body)) {
             spawner.createCreep(spawn, body, 'harvester', 'Collector');
         }
 
@@ -65,28 +65,28 @@ module.exports = {
         let energy = Game.rooms[spawn.room.name].energyAvailable;
 
         if (useEnergyCostMatrix) {
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 700
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 550
                 body = [WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 450
                 body = [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 300
                 body = [WORK, CARRY, CARRY, MOVE, MOVE];
             }
         } else {
-            let extensions = actionLookup.findRoomExtensions(spawn.room);
+            let extensions = lookup.findRoomExtensions(spawn.room);
             if (extensions.length >= 10) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -105,7 +105,7 @@ module.exports = {
             }
         }
 
-        if (energy >= actionLookup.calculateCreepBodyCost(body)) {
+        if (energy >= lookup.calculateCreepBodyCost(body)) {
             spawner.createCreep(spawn, body, 'upgrade', 'Enhancer');
         }
     },
@@ -117,28 +117,28 @@ module.exports = {
         let energy = Game.rooms[spawn.room.name].energyAvailable;
 
         if (useEnergyCostMatrix) {
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 700
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 550
                 body = [WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 450
                 body = [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 300
                 body = [WORK, CARRY, CARRY, MOVE, MOVE];
             }
         } else {
-            let extensions = actionLookup.findRoomExtensions(spawn.room);
+            let extensions = lookup.findRoomExtensions(spawn.room);
             if (extensions.length >= 10) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -157,7 +157,7 @@ module.exports = {
             }
         }
 
-        if (energy >= actionLookup.calculateCreepBodyCost(body)) {
+        if (energy >= lookup.calculateCreepBodyCost(body)) {
             spawner.createCreep(spawn, body, 'builder', 'Constructor');
         }
     },
@@ -169,28 +169,28 @@ module.exports = {
         let energy = Game.rooms[spawn.room.name].energyAvailable;
 
         if (useEnergyCostMatrix) {
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 700
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 550
                 body = [WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 450
                 body = [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 300
                 body = [WORK, CARRY, CARRY, MOVE, MOVE];
             }
         } else {
-            let extensions = actionLookup.findRoomExtensions(spawn.room);
+            let extensions = lookup.findRoomExtensions(spawn.room);
             if (extensions.length >= 10) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -209,7 +209,7 @@ module.exports = {
             }
         }
 
-        if (energy >= actionLookup.calculateCreepBodyCost(body)) {
+        if (energy >= lookup.calculateCreepBodyCost(body)) {
             spawner.createCreep(spawn, body, 'repair', 'Engineer');
         }
     },
@@ -221,28 +221,28 @@ module.exports = {
         let energy = Game.rooms[spawn.room.name].energyAvailable;
 
         if (useEnergyCostMatrix) {
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 700
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 550
                 body = [WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 450
                 body = [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE];
             }
-            if (energy < actionLookup.calculateCreepBodyCost(body)) {
+            if (energy < lookup.calculateCreepBodyCost(body)) {
                 //COST: 300
                 body = [WORK, CARRY, CARRY, MOVE, MOVE];
             }
         } else {
-            let extensions = actionLookup.findRoomExtensions(spawn.room);
+            let extensions = lookup.findRoomExtensions(spawn.room);
             if (extensions.length >= 10) {
                 //COST: 800
                 body = [WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
@@ -261,7 +261,7 @@ module.exports = {
             }
         }
 
-        if (energy >= actionLookup.calculateCreepBodyCost(body)) {
+        if (energy >= lookup.calculateCreepBodyCost(body)) {
             spawner.createCreep(spawn, body, 'transporter', 'Allocator');
         }
     },
