@@ -25,7 +25,8 @@ var roleHarvester = {
                 } else {
                     var sources = lookup.findSources(creep.room);
                     if (sources && sources.length > 0) {
-                        if (creep.memory.role === "harvester" || creep.memory.role === "transporter" || creep.memory.role === "upgrade") {
+                        // if (creep.memory.role === "harvester" || creep.memory.role === "transporter" || creep.memory.role === "upgrade") {
+                            if (creep.memory.role === "harvester" || creep.memory.role === "transporter") {
                             actionHarvest.run(creep, sources[0]);
                         } else {
                             // var random = Math.floor((Math.random() * sources.length - 1) + 1);
@@ -34,12 +35,24 @@ var roleHarvester = {
                     }
                 }
             } else {
-                var targets = lookup.findDumpSites(creep.room);
 
-                if (targets && targets.length > 0) {
-                    var t = targets[0];
+                // var target = lookup.findMyDamagedStructures(creep.room);
+
+                // if (target && target.length > 0) {
+                //     for (var t in target) {
+                //         if (creep.pos.isNearTo(target[t])) {
+                //             actionRepair.run(creep, target[t]);
+                //         }
+                //     }
+                // } else {
+                var target = lookup.findDumpSites(creep.room);
+
+                if (target && target.length > 0) {
+                    var t = target[0];
                     actionDumpResources.run(creep, t);
                 }
+                // }
+
 
             }
         } catch (e) {

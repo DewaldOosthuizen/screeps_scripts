@@ -19,7 +19,7 @@ var actionWithdraw = {
                 target,
                 (!Game.structures[toWithdraw.id] || Game.structures[toWithdraw.id] === null || !toWithdraw.energy || toWithdraw === 0),
                 message,
-                'ðWithdraw'
+                'Ã°ÂÂÂWithdraw'
 
             );
 

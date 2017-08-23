@@ -66,6 +66,8 @@ module.exports.loop = function() {
         roomCreeps.forEach(creep => {
             creepResetRole.reset(creep, false);
             creepAssignTask.assign(creep, panic);
+            
+            // creep.memory.target = null;
 
             //   if (Game.time % 1 === 0) {
             //      creepResetRole.reset(creep, true);

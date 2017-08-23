@@ -13,7 +13,7 @@ var actionClaimController = {
                     actionMove.run(creep, creep.room.controller, '#ffaa00');
                 } else {
                     creep.claimController(creep.room.controller);
-                    creep.say('⚔Claiming!');
+                    creep.say('âClaiming!');
                 }
             } else {
                 actionPatrol.run(creep, 49, 49);

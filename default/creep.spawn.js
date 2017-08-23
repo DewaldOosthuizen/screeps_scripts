@@ -19,9 +19,9 @@ var creepSpawn = {
                         spawnRole.spawnCollector(spawn, useEnergyCostMatrix);
                     } else if (countCreeps.upgraders < 2) {
                         spawnRole.spawnEnhancer(spawn, useEnergyCostMatrix);
-                    } else if (countCreeps.transporters < 2) {
+                    } else if (countCreeps.transporters < 4) {
                         spawnRole.spawnAllocator(spawn, useEnergyCostMatrix);
-                    } else if (countCreeps.repairer < 1) {
+                    } else if (countCreeps.repairer < 4) {
                         spawnRole.spawnEngineer(spawn, useEnergyCostMatrix);
                     } else if (countCreeps.builders < 2) {
                         spawnRole.spawnConstructor(spawn, useEnergyCostMatrix);

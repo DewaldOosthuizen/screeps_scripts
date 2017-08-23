@@ -10,7 +10,7 @@ var actionFollow = {
             // If toFollow creep is found follow for support
             if (toFollow) {
                 actionMove.run(creep, toFollow, '#0066ff');
-                // creep.say("👟£Follow");
+                // creep.say("ðÂ£Follow");
             } else {
                 actionPatrol.run(creep, 49, 49);
             }

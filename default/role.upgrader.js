@@ -11,7 +11,7 @@ var roleUpgrader = {
             }
             if (!creep.memory.upgrading && creep.carry.energy === creep.carryCapacity) {
                 creep.memory.upgrading = true;
-                creep.say('⚡Upgrade')
+                creep.say('â¡Upgrade')
             }
 
             if (creep.memory.upgrading) {

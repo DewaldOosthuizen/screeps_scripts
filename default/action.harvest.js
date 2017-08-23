@@ -8,10 +8,11 @@ var harvestResources = {
     run: function(creep, target) {
 
         try {
+            var message = ' is harvesting from: ';
 
             //Gets the object in memory or initialize object
             var toharvest = setTarget.set(
-                creep, target, false, (creep.name + ' is harvesting from: ' + target)
+                creep, target, false, message
             )
 
             //Get all sources in room
@@ -28,7 +29,7 @@ var harvestResources = {
                 creep,
                 target,
                 (!toharvest || toharvest === null || !isSource),
-                (creep.name + ' is harvesting from: ' + target),
+                message,
                 '💱Harvest'
             )
 

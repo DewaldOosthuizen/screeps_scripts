@@ -25,7 +25,7 @@ var dumpResources = {
                 target,
                 resetDumpSite,
                 message,
-                '🚚Dumping'
+                'ðDumping'
             )
 
             if (creep.transfer(dump, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {

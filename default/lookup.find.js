@@ -27,10 +27,23 @@ module.exports = {
     },
 
     findMyDamagedStructures: function(room) {
-        var damaged = room.find(FIND_STRUCTURES, {
-            //   filter: structure => (structure.structureType !== STRUCTURE_WALL && (structure.hits < structure.hitsMax))
-            filter: structure => (structure.hits < structure.hitsMax)
+        var damaged = [];
+        
+        damaged = room.find(FIND_STRUCTURES, {
+              filter: structure => (structure.structureType !== STRUCTURE_WALL && ((structure.hits / structure.hitsMax) * 100) < 20)
         });
+        
+        if (damaged.length === 0) {
+            damaged = room.find(FIND_STRUCTURES, {
+                  filter: structure => (structure.structureType !== STRUCTURE_WALL && structure.structureType !== STRUCTURE_RAMPART && (((structure.hits / structure.hitsMax) * 100) < 80))
+            });
+        }
+
+        if (damaged.length === 0) {
+            damaged = room.find(FIND_STRUCTURES, {
+                filter: structure => (((structure.hits / structure.hitsMax) * 100) < 80)
+            });
+        }
 
         return _.sortBy(damaged, s => ((s.hits / s.hitsMax) * 100));
     },
@@ -41,7 +54,7 @@ module.exports = {
 
     findConstructionSites: function(room) {
         var sites = room.find(FIND_CONSTRUCTION_SITES);
-        return sites.sort((a, b) => a.progress > b.progress ? a : b);
+        return sites.sort((a, b) => b.progress > a.progress ? b : a);
     },
 
     findSources: function(room) {

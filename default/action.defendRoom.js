@@ -16,11 +16,11 @@ var defendRoom = {
                     if (hostiles && hostiles.length > 0) {
                         tower.attack(hostiles[0]);
                     } else {
-                        var closestDamagedStructure = lookup.findMyDamagedStructures(myRoom);
+                        var damagedStructure = lookup.findMyDamagedStructures(myRoom);
 
-                        if (closestDamagedStructure && closestDamagedStructure.length > 0) {
+                        if (damagedStructure && damagedStructure.length > 0) {
                             if (tower.energy > (tower.energyCapacity / 2)) {
-                                tower.repair(closestDamagedStructure[0]);
+                                tower.repair(damagedStructure[0]);
                             }
                         }
                     }
