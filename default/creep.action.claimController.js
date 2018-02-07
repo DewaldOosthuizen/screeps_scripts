@@ -9,7 +9,7 @@ let actionClaimController = {
         try {
             let ctrl = creep.room.controller;
             if (ctrl && !ctrl.my && creep.body.some(bodyPart => bodyPart === CLAIM)) {
-                if (creep.claimController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                if (creep.claimController(creep.room.controller) === ERR_NOT_IN_RANGE) {
                     actionMove.run(creep, creep.room.controller, '#ffaa00');
                 } else {
                     creep.claimController(creep.room.controller);

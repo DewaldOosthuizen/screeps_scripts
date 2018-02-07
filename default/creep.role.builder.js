@@ -11,10 +11,10 @@ let roleBuilder = {
 
     run: function(creep) {
         try {
-            if (creep.memory.building && creep.carry.energy == 0) {
+            if (creep.memory.building && creep.carry.energy === 0) {
                 creep.memory.building = false;
             }
-            if (!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
+            if (!creep.memory.building && creep.carry.energy === creep.carryCapacity) {
                 creep.memory.building = true;
             }
 

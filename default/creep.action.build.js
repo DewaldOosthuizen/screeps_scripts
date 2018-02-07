@@ -21,7 +21,7 @@ let buildStructure = {
                 'Build'
             );
 
-            if (creep.build(toBuild) == ERR_NOT_IN_RANGE) {
+            if (creep.build(toBuild) === ERR_NOT_IN_RANGE) {
                 actionMove.run(creep, toBuild, '#33cc33'); //lime green
             } else {
                 creep.build(toBuild);

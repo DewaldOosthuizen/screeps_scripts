@@ -1,6 +1,62 @@
 let spawner = require('spawn.createCreep');
 let lookup = require('lookup.find');
 
+let shuffleArray = function(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array;
+}
+
+let defaultBodyConstruction = function(spawn, panic, part1, part2) {
+    let body = [];
+    let extensions = lookup.findRoomExtensions(spawn.room);
+    let energycapacity = (panic === false) ? (extensions.length * 100) : lookup.findAllUsableEnergy(spawn.room);
+
+    let moveCount = ((energycapacity / 2) / lookup.calculateCreepBodyCost([MOVE]));
+    let part1Count = (((energycapacity / 2) / 2) / lookup.calculateCreepBodyCost([part1]));
+    let part2Count = (((energycapacity / 2) / 2) / lookup.calculateCreepBodyCost([part2]));
+
+    if (energycapacity <= 300) {
+        moveCount = 0;
+        part1Count = 0;
+        part2Count = 0;
+    } else {
+        moveCount = moveCount > 25 ? 25 : moveCount;
+        part1Count = part1Count > 15 ? 15 : part1Count;
+        part2Count = part2Count > 10 ? 10 : part2Count;
+    }
+
+    if (moveCount === 0) {
+        body.push(MOVE);
+    } else {
+        for (let i = 0; i < moveCount; i++) {
+            body.push(MOVE);
+        }
+    }
+
+    if (part1Count === 0) {
+        body.push(part1);
+    } else {
+        for (let i = 0; i < part1Count; i++) {
+            body.push(part1);
+        }
+    }
+
+    if (part2Count === 0) {
+        body.push(part2);
+    } else {
+        for (let i = 0; i < part2Count; i++) {
+            body.push(part2);
+        }
+    }
+
+    return shuffleArray(body);
+}
+
+
 module.exports = {
 
     /* 
@@ -62,58 +118,3 @@ module.exports = {
     }
 
 };
-
-let defaultBodyConstruction = function(spawn, panic, part1, part2) {
-    let body = [];
-    let extensions = lookup.findRoomExtensions(spawn.room);
-    let energycapacity = (panic === false) ? (extensions.length * 100) : lookup.findAllUsableEnergy(spawn.room);
-
-    let moveCount = ((energycapacity / 2) / lookup.calculateCreepBodyCost([MOVE]));
-    let part1Count = (((energycapacity / 2) / 2) / lookup.calculateCreepBodyCost([part1]));
-    let part2Count = (((energycapacity / 2) / 2) / lookup.calculateCreepBodyCost([part2]));
-    
-    if (energycapacity <= 300) {
-        moveCount = 0;
-        part1Count = 0;
-        part2Count = 0;
-    } else {
-        moveCount = moveCount > 25 ? 25 : moveCount;
-        part1Count = part1Count > 15 ? 15 : part1Count;
-        part2Count = part2Count > 10 ? 10 : part2Count;
-    }
-
-    if (moveCount === 0) {
-        body.push(MOVE);
-    } else {
-        for (let i = 0; i < moveCount; i++) {
-            body.push(MOVE);
-        }
-    }
-    
-    if (part1Count === 0) {
-        body.push(part1);
-    } else {
-        for (let i = 0; i < part1Count; i++) {
-            body.push(part1);
-        }
-    }
-    
-    if (part2Count === 0) {
-        body.push(part2);
-    } else {
-        for (let i = 0; i < part2Count; i++) {
-            body.push(part2);
-        }
-    }
-
-    return shuffleArray(body);
-}
-
-let shuffleArray = function(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-
-    return array;
-}

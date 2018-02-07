@@ -29,7 +29,7 @@ let actionPatrol = {
         }
 
     },
-    
+
     runToFlag: function(creep, flag) {
         try {
             let flagObj = Game.flags[flag];
@@ -41,7 +41,7 @@ let actionPatrol = {
             if (nextFlag) {
                 flagObj = nextFlag;
             } else {
-                 flagObj = Game.flags['Flag1'];
+                flagObj = Game.flags['Flag1'];
             }
 
             //Reset if conditions are true
@@ -61,7 +61,7 @@ let actionPatrol = {
 };
 
 let generateRoomPosition = function(creep, maxX, maxY) {
-    let costs = new PathFinder.CostMatrix;
+    let costs = new PathFinder.CostMatrix();
 
     let positionObject = new RoomPosition(Math.floor((Math.random() * maxX) + 1), Math.floor((Math.random() * maxY) + 1), creep.room.name);
 

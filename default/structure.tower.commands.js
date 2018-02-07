@@ -1,6 +1,19 @@
 let lookup = require('lookup.find');
 let errorHandler = require('error.notify');
 
+
+let repairDamagedStructures = function(myRoom, tower) {
+    let damagedStructure = lookup.findMyDamagedStructures(myRoom);
+
+    if (damagedStructure && damagedStructure.length > 0) {
+        if (((damagedStructure[0].hits / damagedStructure[0].hitsMax) * 100) < 20) {
+            tower.repair(damagedStructure[0]);
+        } else if (tower.energy > (tower.energyCapacity / 2)) {
+            tower.repair(damagedStructure[0]);
+        }
+    }
+}
+
 let towerCommands = {
 
     defendRoom: function(myRoom) {
@@ -25,16 +38,5 @@ let towerCommands = {
 
 };
 
-let repairDamagedStructures = function(myRoom, tower) {
-    let damagedStructure = lookup.findMyDamagedStructures(myRoom);
-
-    if (damagedStructure && damagedStructure.length > 0) {
-        if (((damagedStructure[0].hits / damagedStructure[0].hitsMax) * 100) < 20) {
-            tower.repair(damagedStructure[0]);
-        } else if (tower.energy > (tower.energyCapacity / 2)) {
-            tower.repair(damagedStructure[0]);
-        }
-    }
-}
 
 module.exports = towerCommands;

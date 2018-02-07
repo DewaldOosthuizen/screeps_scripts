@@ -35,9 +35,9 @@ let roleHarvester = {
                         target = creep.pos.findClosestByPath(STRUCTURE_LINK, {
                             filter: source => source.energy > 0
                         });
-                        
+
                         if (target) {
-                            if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                            if (creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
                                 creep.moveTo(target);
                             } else {
                                 creep.withdraw(target, RESOURCE_ENERGY);
@@ -50,8 +50,8 @@ let roleHarvester = {
                 // let targets = lookup.findDumpSites(creep.room);
                 let target = lookup.findDumpSitesClosestToCreep(creep);
                 if (!target) {
-                     let targets = lookup.findDumpSites(creep.room);
-                     target = targets[0];
+                    let targets = lookup.findDumpSites(creep.room);
+                    target = targets[0];
                 }
                 if (target) {
                     actionDumpResources.run(creep, target);
