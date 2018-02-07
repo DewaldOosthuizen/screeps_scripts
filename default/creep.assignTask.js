@@ -1,11 +1,10 @@
-var actionConstruct = require('action.construct');
-var roleTransporter = require('role.transporter');
-var roleHarvester = require('role.harvester');
-var roleUpgrader = require('role.upgrader');
-var roleBuilder = require('role.builder');
-var roleRepair = require('role.repairer');
-var roleHealer = require('role.healer');
-var roleAttack = require('role.attack');
+let actionConstruct = require('creep.action.construct');
+let roleHarvester = require('creep.role.harvester');
+let roleUpgrader = require('creep.role.upgrader');
+let roleBuilder = require('creep.role.builder');
+let roleRepair = require('creep.role.repairer');
+let roleHealer = require('creep.role.healer');
+let roleAttack = require('creep.role.attack');
 
 module.exports = {
     assign: function(creep, panic) {
@@ -32,11 +31,7 @@ module.exports = {
                 roleRepair.run(creep);
             }
         } else if (creep.memory.role == 'transporter') {
-            if (panic) {
-                roleHarvester.run(creep);
-            } else {
-                roleTransporter.run(creep);
-            }
+            roleHarvester.run(creep);
         }
     }
 };

@@ -1,11 +1,11 @@
-var lookup = require('lookup.find_by_id');
+let lookup = require('lookup.find_by_id');
 
 module.exports = {
     refresh: function() {
-        var roomRepesentitive = [];
+        let roomRepesentitive = [];
 
-        for (var roomName in Game.rooms) {
-            var room = Game.rooms[roomName];
+        for (let roomName in Game.rooms) {
+            let room = Game.rooms[roomName];
             roomRepesentitive.push(
                 "           " +
                 "               {" +

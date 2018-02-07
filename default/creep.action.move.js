@@ -1,12 +1,12 @@
-var errorHandler = require('error.notify');
+let errorHandler = require('error.notify');
 
-var actionMove = {
+let actionMove = {
 
     run: function(creep, target, color) {
 
         try {
             // Perform pathfinding only if we have enough CPU
-            var resources = Game.cpu.tickLimit - Game.cpu.getUsed();
+            let resources = Game.cpu.tickLimit - Game.cpu.getUsed();
             //   console.log(resources);
             //   if (resources > 20) {
             creep.moveTo(target, {

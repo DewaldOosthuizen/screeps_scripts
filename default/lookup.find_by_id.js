@@ -1,94 +1,94 @@
-var _ = require('lodash');
-var lookup = require('lookup.find');
+let _ = require('lodash');
+let lookup = require('lookup.find');
 
 module.exports = {
 
     findMyTowers: function(room) {
-        var towers = lookup.findMyTowers(room);
+        let towers = lookup.findMyTowers(room);
 
-        var ids = []
+        let ids = []
         towers.forEach(tower => ids.push("\"" + tower.id + "\""));
         return ids;
     },
 
     findMyDamagedStructures: function(room) {
-        var damaged = lookup.findMyDamagedStructures(room);
+        let damaged = lookup.findMyDamagedStructures(room);
 
-        var ids = [];
+        let ids = [];
         damaged.forEach(object => ids.push("\"" + object.id + "\""));
         return ids;
     },
 
 
     findHostileCreeps: function(room) {
-        var hostiles = lookup.findHostileCreeps(room);
+        let hostiles = lookup.findHostileCreeps(room);
 
-        var ids = []
+        let ids = []
         hostiles.forEach(s => ids.push("\"" + s.id + "\""));
         return ids;
     },
 
     findConstructionSites: function(room) {
-        var sites = lookup.findConstructionSites(room);
+        let sites = lookup.findConstructionSites(room);
 
-        var ids = []
+        let ids = []
         sites.forEach(s => ids.push("\"" + s.id + "\""));
         return ids;
     },
 
     findSources: function(room) {
-        var sources = lookup.findSources(room);
+        let sources = lookup.findSources(room);
 
-        var ids = []
+        let ids = []
         sources.forEach(s => ids.push("\"" + s.id + "\""));
         return ids;
     },
 
     findMyDamagedCreeps: function(room) {
-        var creeps = lookup.findMyDamagedCreeps(room);
+        let creeps = lookup.findMyDamagedCreeps(room);
 
-        var ids = []
+        let ids = []
         creeps.forEach(s => ids.push("\"" + s.id + "\""));
         return ids;
     },
 
     findTransporterDumpSites: function(room) {
-        var target = lookup.findTransporterDumpSites(room);
+        let target = lookup.findTransporterDumpSites(room);
 
-        var ids = []
+        let ids = []
         target.forEach(s => ids.push("\"" + s.id + "\""));
         return ids;
     },
 
     findHarvesterDumpSites: function(room) {
         //Find all structures other than spawn and towers that require energy
-        var target = lookup.findHarvesterDumpSites(room);
+        let target = lookup.findHarvesterDumpSites(room);
 
-        var ids = []
+        let ids = []
         target.forEach(s => ids.push("\"" + s.id + "\""));
         return ids;
     },
 
     findAllStructuresWithEnergy: function(room) {
-        var sources = lookup.findAllStructuresWithEnergy(room);
+        let sources = lookup.findAllStructuresWithEnergy(room);
 
-        var ids = []
+        let ids = []
         sources.forEach(s => ids.push("\"" + s.id + "\""));
         return ids;
     },
 
     findDroppedSources: function(room) {
-        var sources = lookup.findDroppedSources(room);
+        let sources = lookup.findDroppedSources(room);
 
-        var ids = []
+        let ids = []
         sources.forEach(s => ids.push("\"" + s.id + "\""));
         return ids;
     },
 
     findAllDumpSites: function(room) {
-        var dumpSites = lookup.findAllDumpSites(room);
+        let dumpSites = lookup.findAllDumpSites(room);
 
-        var ids = []
+        let ids = []
         dumpSites.forEach(dump => ids.push("\"" + dump.id + "\""));
         return ids;
     }

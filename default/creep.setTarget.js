@@ -1,9 +1,9 @@
-var errorHandler = require('error.notify');
-var creepSay = require('creep.say');
-var roomVisual = require('room.visual');
-var _ = require('lodash');
+let errorHandler = require('error.notify');
+let creepSay = require('creep.say');
+let roomVisual = require('room.visual');
+let _ = require('lodash');
 
-var setTarget = {
+let setTarget = {
 
     set: function(creep, target, overwrite, roomDisplayMessage, sayMessage) {
         try {
@@ -16,11 +16,11 @@ var setTarget = {
 
                 console.log(creep.name + ' target is ' + creep.memory.target);
             }
+                let object = Game.getObjectById(creep.memory.target.id);
+                let toReturn = object && object !== null ? object : creep.memory.target != null ? creep.memory.target : target;
 
-            var object = Game.getObjectById(creep.memory.target.id);
-            var toReturn = object && object !== null ? object : creep.memory.target != null ? creep.memory.target : target;
+                return toReturn;
 
-            return toReturn;
 
         } catch (e) {
             errorHandler.notify('Error in setTarget: ', e);

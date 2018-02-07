@@ -1,36 +1,32 @@
-var _ = require('lodash');
-var spawnRole = require('spawn.role');
-var errorHandler = require('error.notify');
-var lookup = require('lookup.find');
+let _ = require('lodash');
+let spawnRole = require('spawn.role');
+let errorHandler = require('error.notify');
+let lookup = require('lookup.find');
 
-var creepSpawn = {
+let creepSpawn = {
 
-    run: function(myRoom, useEnergyCostMatrix) {
+    run: function(myRoom, panic) {
         try {
-
             let spawnList = myRoom.find(FIND_MY_SPAWNS);
-
             spawnList.forEach(spawn => {
                 if (!spawn.spawning) {
 
-                    var countCreeps = lookup.countAllCreepsByRole(myRoom);
+                    let countCreeps = lookup.countAllCreepsByRole(myRoom);
 
-                    if (countCreeps.harvesters < 1) {
-                        spawnRole.spawnCollector(spawn, useEnergyCostMatrix);
-                    } else if (countCreeps.upgraders < 2) {
-                        spawnRole.spawnEnhancer(spawn, useEnergyCostMatrix);
-                    } else if (countCreeps.transporters < 4) {
-                        spawnRole.spawnAllocator(spawn, useEnergyCostMatrix);
-                    } else if (countCreeps.repairer < 4) {
-                        spawnRole.spawnEngineer(spawn, useEnergyCostMatrix);
-                    } else if (countCreeps.builders < 2) {
-                        spawnRole.spawnConstructor(spawn, useEnergyCostMatrix);
-                    } else if (countCreeps.warriors < 0) {
-                        spawnRole.spawnWarrior(spawn);
+                    if (countCreeps.harvesters < 2) {
+                        spawnRole.spawnAllocator(spawn, panic);
+                    } else if (countCreeps.upgraders < 1) {
+                        spawnRole.spawnEnhancer(spawn, panic);
+                    } else if (countCreeps.repairer < 1) {
+                        spawnRole.spawnEngineer(spawn, panic);
+                    } else if (countCreeps.builders < 1) {
+                        spawnRole.spawnConstructor(spawn, panic);
+                    } else if (countCreeps.warriors < 1) {
+                        spawnRole.spawnWarrior(spawn, panic);
                     } else if (countCreeps.archers < 0) {
-                        spawnRole.spawnArcher(spawn);
+                        spawnRole.spawnArcher(spawn, panic);
                     } else if (countCreeps.healers < 0) {
-                        spawnRole.spawnMage(spawn);
+                        spawnRole.spawnMage(spawn, panic);
                     }
                 }
             });

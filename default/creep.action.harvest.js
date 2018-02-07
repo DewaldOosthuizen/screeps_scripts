@@ -1,50 +1,49 @@
-var actionMove = require('action.move');
-var lookup = require('lookup.find');
-var setTarget = require('creep.setTarget');
-var errorHandler = require('error.notify');
+let actionMove = require('creep.action.move');
+let lookup = require('lookup.find');
+let setTarget = require('creep.setTarget');
+let errorHandler = require('error.notify');
 
-var harvestResources = {
+let harvestResources = {
 
     run: function(creep, target) {
 
         try {
-            var message = ' is harvesting from: ';
+            let message = ' is harvesting from: ';
 
             //Gets the object in memory or initialize object
-            var toharvest = setTarget.set(
+            let toharvest = setTarget.set(
                 creep, target, false, message
             )
 
             //Get all sources in room
-            var allSources = lookup.findSources(creep.room);
+            let allSources = lookup.findSources(creep.room);
             //Check if target is a source
-            var isSource = toharvest && toharvest.id !== null ? allSources.some(s => s === toharvest) : false;
+            let isSource = toharvest && toharvest.id !== null ? allSources.some(s => s === toharvest) : false;
 
             //Reset source if conditions are true
-            var isTargetSource = allSources.some(s => s === target);
+            let isTargetSource = allSources.some(s => s === target);
             target = isTargetSource ? target : allSources[Math.floor((Math.random() * allSources.length - 1) + 1)];
 
-
+            // console.log(creep.name + " is harvesting from " +  target);
             toharvest = setTarget.set(
                 creep,
                 target,
                 (!toharvest || toharvest === null || !isSource),
                 message,
-                '💱Harvest'
+                'Harvest'
             )
 
             if (creep.harvest(toharvest) == ERR_NOT_IN_RANGE) {
-                actionMove.run(creep, toharvest, '#ffaa00');
+                actionMove.run(creep, toharvest, '#ffaa00'); //orange
             } else {
                 creep.harvest(toharvest);
             }
         } catch (e) {
-            errorHandler.notify('Error in action.harvest: ', e);
+            errorHandler.notify('Error in creep.action.harvest: ', e);
         }
 
     }
 
 };
-
 
 module.exports = harvestResources;

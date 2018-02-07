@@ -1,12 +1,13 @@
-var lookup = require('lookup.find');
-var roleHarvester = require("role.harvester");
-var actionConstruct = require('action.construct');
-var actionMove = require('action.move');
-var actionBuild = require('action.build');
-var errorHandler = require('error.notify');
-var actionWithdraw = require('action.withdraw');
+let lookup = require('lookup.find');
+let roleHarvester = require("creep.role.harvester");
+let actionConstruct = require('creep.action.construct');
+let actionMove = require('creep.action.move');
+let actionBuild = require('creep.action.build');
+let errorHandler = require('error.notify');
+let actionWithdraw = require('creep.action.withdraw');
+let roleUpgrader = require('creep.role.upgrader');
 
-var roleBuilder = {
+let roleBuilder = {
 
     run: function(creep) {
         try {
@@ -18,14 +19,15 @@ var roleBuilder = {
             }
 
             if (creep.memory.building) {
-                var target = lookup.findConstructionSites(creep.room);
-                if (target && target.length > 0) {
-                    actionBuild.run(creep, target[0]);
+                let target = lookup.findConstructionSites(creep);
+                if (target) {
+                    actionBuild.run(creep, target);
                 } else {
-                    actionConstruct.buildRoadToAllSources();
+                    // actionConstruct.buildRoadToAllSources();
+                    roleUpgrader.run(creep);
                 }
             } else {
-                // var sources = lookup.findAllStructuresWithEnergy(creep.room);
+                // let sources = lookup.findAllStructuresWithEnergy(creep.room);
                 // if (sources && sources.length > 0) {
                 //   actionWithdraw.run(creep, sources[0]);
                 // } else {

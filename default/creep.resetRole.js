@@ -3,7 +3,7 @@ module.exports = {
 
         //Reset all the creep roles based on their names
         if (!creep.memory.role || creep.memory.role === null || forceReset === true) {
-            if ((creep.name).includes('Collector')) {
+            if ((creep.name).includes('Allocator')) {
                 creep.memory.role = 'harvester'
             } else if ((creep.name).includes('Enhancer')) {
                 creep.memory.role = 'upgrade'
@@ -17,8 +17,6 @@ module.exports = {
                 creep.memory.role = 'healer'
             } else if ((creep.name).includes('Engineer')) {
                 creep.memory.role = 'repair'
-            } else if ((creep.name).includes('Allocator')) {
-                creep.memory.role = 'transporter'
             } else {
                 creep.memory.role = 'harvester'
             }

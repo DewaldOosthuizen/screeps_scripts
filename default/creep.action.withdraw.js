@@ -1,17 +1,17 @@
-var actionMove = require('action.move');
-var setTarget = require('creep.setTarget');
-var errorHandler = require('error.notify');
+let actionMove = require('creep.action.move');
+let setTarget = require('creep.setTarget');
+let errorHandler = require('error.notify');
 
 
-var actionWithdraw = {
+let actionWithdraw = {
 
     run: function(creep, target) {
 
         try {
-            var message = (creep.name + ' is withdrawing from ' + target);
+            let message = (creep.name + ' is withdrawing from ' + target);
 
             //Gets the object in memory or initialize object
-            var toWithdraw = setTarget.set(creep, target, false, message);
+            let toWithdraw = setTarget.set(creep, target, false, message);
 
             //Reset if conditions are true
             toWithdraw = setTarget.set(
@@ -19,7 +19,7 @@ var actionWithdraw = {
                 target,
                 (!Game.structures[toWithdraw.id] || Game.structures[toWithdraw.id] === null || !toWithdraw.energy || toWithdraw === 0),
                 message,
-                'Ã°ÂÂÂWithdraw'
+                'Withdraw'
 
             );
 
@@ -29,7 +29,7 @@ var actionWithdraw = {
                 creep.withdraw(toWithdraw, RESOURCE_ENERGY)
             }
         } catch (e) {
-            errorHandler.notify('Error in action.withdraw: ', e);
+            errorHandler.notify('Error in creep.action.withdraw: ', e);
         }
 
     }

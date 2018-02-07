@@ -1,15 +1,15 @@
-var actionPatrol = require('action.patrol');
-var lookup = require('lookup.find');
-var roleHarvester = require("role.harvester");
-var roleBuilder = require("role.builder");
-var actionMove = require('action.move');
-var actionRepair = require('action.repair');
-var errorHandler = require('error.notify');
-var actionWithdraw = require('action.withdraw');
-var _ = require('lodash');
-var actionDumpResources = require('action.dumpResources');
+let actionPatrol = require('creep.action.patrol');
+let lookup = require('lookup.find');
+let roleHarvester = require("creep.role.harvester");
+let roleBuilder = require("creep.role.builder");
+let actionMove = require('creep.action.move');
+let actionRepair = require('creep.action.repair');
+let errorHandler = require('error.notify');
+let actionWithdraw = require('creep.action.withdraw');
+let _ = require('lodash');
+let actionDumpResources = require('creep.action.dumpResources');
 
-var roleRepair = {
+let roleRepair = {
 
     run: function(creep) {
         try {
@@ -22,12 +22,12 @@ var roleRepair = {
 
             // console.log(creep.name + ' - creep.memory.repair: ' + creep.memory.repair);
             if (creep.memory.repair) {
-                var towers = lookup.findMyTowers(creep.room);
-                var canDump = false;
-                var target = null;
-                
+                let towers = lookup.findEngineerDumpSites(creep.room);
+                let canDump = false;
+                let target = null;
+
                 if (towers.length > 0) {
-                    for (var t in towers) {
+                    for (let t in towers) {
                         target = towers[t];
                         if (target.energy < target.energyCapacity) {
                             canDump = true;
@@ -35,7 +35,7 @@ var roleRepair = {
                         }
                     }
                 }
-                
+
                 if (canDump) {
                     actionDumpResources.run(creep, target)
                 } else {
@@ -47,9 +47,9 @@ var roleRepair = {
                         roleBuilder.run(creep);
                     }
                 }
-                
+
             } else {
-                // var sources = lookup.findAllStructuresWithEnergy(creep.room);
+                // let sources = lookup.findAllStructuresWithEnergy(creep.room);
                 // if (sources && sources.length > 0) {
                 //   actionWithdraw.run(creep, sources[0]);
                 // } else {

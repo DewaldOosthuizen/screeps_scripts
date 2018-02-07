@@ -1,19 +1,19 @@
-var actionMove = require('action.move');
-var setTarget = require('creep.setTarget');
-var errorHandler = require('error.notify');
+let actionMove = require('creep.action.move');
+let setTarget = require('creep.setTarget');
+let errorHandler = require('error.notify');
 
 
-var dumpResources = {
+let dumpResources = {
 
     run: function(creep, target) {
 
         try {
-            var message = (creep.name + ' is dumping at site: ' + target);
+            let message = (creep.name + ' is dumping at site: ' + target);
 
             //Gets the object in memory or initialize object
-            var dump = setTarget.set(creep, target, false, message);
+            let dump = setTarget.set(creep, target, false, message);
 
-            var resetDumpSite = (dump.energy === dump.energyCapacity) || (creep.transfer(dump, RESOURCE_ENERGY) === ERR_INVALID_TARGET);
+            let resetDumpSite = (dump.energy === dump.energyCapacity) || (creep.transfer(dump, RESOURCE_ENERGY) === ERR_INVALID_TARGET);
 
             if (resetDumpSite !== true && resetDumpSite !== false) {
                 resetDumpSite = true;
@@ -25,16 +25,16 @@ var dumpResources = {
                 target,
                 resetDumpSite,
                 message,
-                'ðDumping'
+                'Dumping'
             )
 
             if (creep.transfer(dump, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                actionMove.run(creep, dump, '#ffff00');
+                actionMove.run(creep, dump, '#ff00ff'); //Purple
             } else {
                 creep.transfer(dump, RESOURCE_ENERGY);
             }
         } catch (e) {
-            errorHandler.notify('Error in action.dumpResources: ', e);
+            errorHandler.notify('Error in creep.action.dumpResources: ', e);
         }
 
     }
