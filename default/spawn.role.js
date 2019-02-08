@@ -10,14 +10,20 @@ let shuffleArray = function(array) {
     return array;
 }
 
+let roundDownNumber = function(number) {
+    return Math.floor(number);
+}
+
 let defaultBodyConstruction = function(spawn, panic, part1, part2) {
     let body = [];
     let extensions = lookup.findRoomExtensions(spawn.room);
-    let energycapacity = (panic === false) ? (extensions.length * 100) : lookup.findAllUsableEnergy(spawn.room);
+    let availableEnergy = Game.rooms[spawn.room.name].energyAvailable; //Get the amount of energy in room
+    let energyCapacityAvailable = Game.rooms[spawn.room.name].energyCapacityAvailable; //get the total amount of energy storage available
+    let energycapacity = (panic === false) ? energyCapacityAvailable : availableEnergy;
 
-    let moveCount = ((energycapacity / 2) / lookup.calculateCreepBodyCost([MOVE]));
-    let part1Count = (((energycapacity / 2) / 2) / lookup.calculateCreepBodyCost([part1]));
-    let part2Count = (((energycapacity / 2) / 2) / lookup.calculateCreepBodyCost([part2]));
+    let moveCount =  roundDownNumber((energycapacity / 2) / lookup.calculateCreepBodyCost([MOVE]));
+    let part1Count =  roundDownNumber((energycapacity / 4) /  lookup.calculateCreepBodyCost([part1]));
+    let part2Count = roundDownNumber((energycapacity / 4) /  lookup.calculateCreepBodyCost([part2]));
 
     if (energycapacity <= 300) {
         moveCount = 0;

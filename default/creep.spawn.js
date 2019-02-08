@@ -15,19 +15,20 @@ let creepSpawn = {
 
                     if (countCreeps.harvesters < 2) {
                         spawnRole.spawnAllocator(spawn, panic);
-                    } else if (countCreeps.upgraders < 1) {
+                    } else if (countCreeps.upgraders < 2) {
                         spawnRole.spawnEnhancer(spawn, panic);
                     } else if (countCreeps.repairer < 1) {
                         spawnRole.spawnEngineer(spawn, panic);
                     } else if (countCreeps.builders < 1) {
                         spawnRole.spawnConstructor(spawn, panic);
-                    } else if (countCreeps.warriors < 1) {
-                        spawnRole.spawnWarrior(spawn, panic);
-                    } else if (countCreeps.archers < 0) {
-                        spawnRole.spawnArcher(spawn, panic);
-                    } else if (countCreeps.healers < 0) {
-                        spawnRole.spawnMage(spawn, panic);
-                    }
+                    } 
+                    // else if (countCreeps.warriors < 1) {
+                    //     spawnRole.spawnWarrior(spawn, panic);
+                    // } else if (countCreeps.archers < 0) {
+                    //     spawnRole.spawnArcher(spawn, panic);
+                    // } else if (countCreeps.healers < 0) {
+                    //     spawnRole.spawnMage(spawn, panic);
+                    // }
                 }
             });
 

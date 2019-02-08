@@ -20,6 +20,7 @@ module.exports.loop = function() {
 
     for (let name in Game.rooms) {
         let room = Game.rooms[name];
+        
 
         //If no harvesters exist, default other roles to be harvesters
         //TODO: Move to lookup.find.js

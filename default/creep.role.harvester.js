@@ -4,7 +4,8 @@ let actionPickup = require('creep.action.pickup');
 let actionMove = require('creep.action.move');
 let actionHarvest = require('creep.action.harvest');
 let errorHandler = require('error.notify');
-let actionPatrol = require('creep.action.patrol');
+let actionRepair = require('creep.action.repair');
+let actionBuild = require('creep.action.build');
 
 let roleHarvester = {
 
@@ -24,7 +25,11 @@ let roleHarvester = {
                 if (target) {
                     actionPickup.run(creep, target);
                 } else {
-                    target = lookup.findSourcesClosestToCreep(creep);
+                    target = lookup.findSources(creep.room);
+                    // console.log(Math.random() * target.length - 1);
+                    // console.log(Math.floor((Math.random() * target.length - 1) + 1));
+                    // console.log(target[Math.floor((Math.random() * target.length - 1) + 1)]);
+                    target = target[Math.floor((Math.random() * target.length - 1) + 1)]
                     if (target && target.id && Game.getObjectById(target.id)) {
                         actionHarvest.run(creep, target);
                     } else {
@@ -36,25 +41,37 @@ let roleHarvester = {
                             filter: source => source.energy > 0
                         });
 
-                        if (target) {
-                            if (creep.withdraw(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-                                creep.moveTo(target);
+                        if (target[0]) {
+                            if (creep.withdraw(target[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+                                creep.moveTo(target[0]);
                             } else {
-                                creep.withdraw(target, RESOURCE_ENERGY);
+                                creep.withdraw(target[0], RESOURCE_ENERGY);
                             }
                         }
                     }
                 }
             } else {
                 //Find all structures other than spawn and towers that require energy
-                // let targets = lookup.findDumpSites(creep.room);
-                let target = lookup.findDumpSitesClosestToCreep(creep);
+                let target = lookup.findDumpSites(creep.room);
                 if (!target) {
-                    let targets = lookup.findDumpSites(creep.room);
-                    target = targets[0];
+                    target = target[0]
+                } else {
+                    target = target[0];
                 }
+
                 if (target) {
                     actionDumpResources.run(creep, target);
+                } else {
+                    target = lookup.findConstructionSites(creep.room);
+
+                    if (target && target.length > 0) {
+                        actionBuild.run(creep, target[0]);
+                    } else  {
+                        target = lookup.findMyDamagedStructures(creep.room);
+                        if (target && target.length > 0) {
+                            actionRepair.run(creep, target[0]);
+                        } 
+                    }
                 }
 
             }

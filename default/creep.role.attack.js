@@ -8,11 +8,10 @@ let errorHandler = require('error.notify');
 let creepSay = require('creep.say');
 
 let roleAttack = {
-
     run: function(creep) {
         try {
             const target = lookup.findHostileCreeps(creep.room);
-            const building = lookup.findHostileBuildings(creep);
+            const building = undefined//lookup.findHostileBuildings(creep);
             if (target && target.length > 0) {
                 creep.memory.target = null;
                 let enemy = target[0];

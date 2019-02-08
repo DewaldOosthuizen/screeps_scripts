@@ -22,7 +22,7 @@ let roleRepair = {
 
             // console.log(creep.name + ' - creep.memory.repair: ' + creep.memory.repair);
             if (creep.memory.repair) {
-                let towers = lookup.findEngineerDumpSites(creep.room);
+                let towers = lookup.findDumpSites(creep.room);
                 let canDump = false;
                 let target = null;
 
@@ -49,12 +49,7 @@ let roleRepair = {
                 }
 
             } else {
-                // let sources = lookup.findAllStructuresWithEnergy(creep.room);
-                // if (sources && sources.length > 0) {
-                //   actionWithdraw.run(creep, sources[0]);
-                // } else {
                 roleHarvester.run(creep);
-                // }
             }
 
         } catch (e) {
