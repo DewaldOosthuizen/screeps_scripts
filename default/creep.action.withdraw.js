@@ -23,7 +23,7 @@ let actionWithdraw = {
 
             );
 
-            if (creep.withdraw(toWithdraw, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            if (creep.withdraw(toWithdraw, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
                 actionMove.run(creep, toWithdraw, '#ff00ff');
             } else {
                 creep.withdraw(toWithdraw, RESOURCE_ENERGY)

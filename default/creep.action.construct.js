@@ -19,7 +19,7 @@ module.exports = {
     expandRampartsOutwards: function() {
         let ramparts = Game.getRoom('1-1').find(Game.MY_STRUCTURES, {
             filter: function(struct) {
-                return struct.structureType == Game.STRUCTURE_RAMPART
+                return struct.structureType === Game.STRUCTURE_RAMPART
             }
         });
 
@@ -43,9 +43,9 @@ module.exports = {
                 let build = true;
                 for (let tilei in tile) {
                     let thing = tile[tilei];
-                    if (thing.type == 'structure' && thing.structure.structureType == Game.STRUCTURE_RAMPART)
+                    if (thing.type === 'structure' && thing.structure.structureType === Game.STRUCTURE_RAMPART)
                         build = false;
-                    if (thing.type == 'constructionSite')
+                    if (thing.type === 'constructionSite')
                         build = false;
                 }
 

@@ -23,7 +23,7 @@ let repairStructure = {
             );
 
 
-            if (creep.repair(toRepair) == ERR_NOT_IN_RANGE) {
+            if (creep.repair(toRepair) === ERR_NOT_IN_RANGE) {
                 actionMove.run(creep, toRepair, '#663300'); //brown
             } else {
                 creep.repair(toRepair)

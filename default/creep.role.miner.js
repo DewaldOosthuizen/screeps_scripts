@@ -17,14 +17,14 @@ let roleUpgrader = {
 
             if (creep.memory.extracting) {
                 let target = creep.pos.findClosestByPath(STRUCTURE_EXTRACTOR);
-                if (creep.harvest(target) == ERR_NOT_IN_RANGE) {
+                if (creep.harvest(target) === ERR_NOT_IN_RANGE) {
                     actionMove.run(creep, creep.room.controller, '#00ffcc'); //aqua
                 }
             } else {
                 //Find all structures other than spawn and towers that require energy
                 // let targets = lookup.findDumpSites(creep.room);
                 let target = creep.pos.findClosestByPath(lookup.findExtractorDumpSite(creep.room));
-                
+
                 if (target) {
                     actionDumpResources.run(creep, target);
                 } else {

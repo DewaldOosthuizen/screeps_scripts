@@ -28,7 +28,7 @@ let dumpResources = {
                 'Dumping'
             )
 
-            if (creep.transfer(dump, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            if (creep.transfer(dump, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
                 actionMove.run(creep, dump, '#ff00ff'); //Purple
             } else {
                 creep.transfer(dump, RESOURCE_ENERGY);

@@ -14,6 +14,7 @@ module.exports = {
                 role: creepRole
             });
 
+            // console.log("cost:", cost)
             if (_.isString(result)) {
                 roomVisual.display(
                     spawn.room.name,

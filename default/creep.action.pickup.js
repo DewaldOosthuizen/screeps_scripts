@@ -6,7 +6,7 @@ let pickupResources = {
     run: function(creep, target) {
 
         try {
-            if (creep.pickup(target) == ERR_NOT_IN_RANGE) {
+            if (creep.pickup(target) === ERR_NOT_IN_RANGE) {
                 actionMove.run(creep, target, '#ffaa00'); //orange
             } else {
                 creep.pickup(target);

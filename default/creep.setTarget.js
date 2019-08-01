@@ -16,10 +16,10 @@ let setTarget = {
 
                 console.log(creep.name + ' target is ' + creep.memory.target);
             }
-                let object = Game.getObjectById(creep.memory.target.id);
-                let toReturn = object && object !== null ? object : creep.memory.target != null ? creep.memory.target : target;
+            let object = Game.getObjectById(creep.memory.target.id);
+            let toReturn = object && object !== null ? object : creep.memory.target != null ? creep.memory.target : target;
 
-                return toReturn;
+            return toReturn;
 
 
         } catch (e) {

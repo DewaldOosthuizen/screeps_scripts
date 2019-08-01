@@ -16,8 +16,8 @@ let roleHealer = {
 
             // If injured creep
             if (target && target.length > 0) {
-                if (creep.heal(target[0]) == ERR_NOT_IN_RANGE) {
-                    actionMove.run(creep, target[0], '#ffff00');//yellow
+                if (creep.heal(target[0]) === ERR_NOT_IN_RANGE) {
+                    actionMove.run(creep, target[0], '#ffff00'); //yellow
                 } else {
                     creep.heal(target[0])
                     creepSay.sayGlobal(creep, 'Healing');
